@@ -62,17 +62,22 @@ o	Communication via API avec Axios ou Fetch.
 •	Documentation complète.
 
 Diagrams:
-
-
 case:
 
 ![Usecase Diagram](/docs/Digrames/usecase.png)
  
 
 
-Seq:
+Seq Diagram::
 
 ![Seq Diagram](/docs/Digrames/seq.png)
 
 
+Dtate Diagram::
 
+![State Diagram](Digrames/state.png)
+
+
+Activity Diagram:
+
+![Activity](Digrames/activity.png)

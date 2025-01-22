@@ -1,0 +1,18 @@
+@startuml
+[*] --> ViewingItemsInCard
+
+ViewingItemsInCard --> AdminAddsNewItem : Admin adds new item
+AdminAddsNewItem --> ItemStoredInDB : Item is stored in DB
+ItemStoredInDB --> ViewingItemsInCard : Admin reviews updated items in card
+
+ViewingItemsInCard --> AdminViewsMenuTable : Admin views menu table
+AdminViewsMenuTable --> AdminCanUpdateOrDelete : Admin can update or delete item
+AdminCanUpdateOrDelete --> ItemUpdated : Item updated in DB
+ItemUpdated --> ViewingItemsInCard : Admin reviews updated items in card
+AdminCanUpdateOrDelete --> ItemDeleted : Item deleted from DB
+ItemDeleted --> ViewingItemsInCard : Admin reviews updated items in card
+
+[*] --> ItemUpdated : Item updated successfully
+[*] --> ItemDeleted : Item deleted successfully
+
+@enduml

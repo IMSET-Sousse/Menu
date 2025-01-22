@@ -1,0 +1,12 @@
+@startuml
+start
+:Admin views items in card format;
+:Admin adds new item;
+:MenuItem enters details into DB;
+:MenuTable Update / Delete / View items;
+:Database saves item;
+:Database returns success response;
+:MenuTable reflects updated item;
+:CardView updates displayed items;
+stop
+@enduml

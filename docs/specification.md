@@ -64,21 +64,15 @@ o	Communication via API avec Axios ou Fetch.
 Diagrams:
 
 
-@startuml
-actor User as U
-actor Admin as A
+case:
 
-rectangle "Site Web de Recettes" {
-  U --> (View Recipes)
-
-  A --> (Add/Edit/Delete Recipes)
-  A --> (Search Recipes)
-  A --> (View Recipes)
-  
-  
-}
-@enduml
-
-![Use Case Diagram](usercase.png)
-
+![Usecase Diagram](/docs/Digrames/usecase.png)
  
+
+
+Seq:
+
+![Seq Diagram](/docs/Digrames/seq.png)
+
+
+

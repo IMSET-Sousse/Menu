@@ -1,15 +1,11 @@
-
 @startuml
 actor User as U
 actor Admin as A
 
-rectangle "Site Web de Recettes" {
-  U --> (Search Recipes)
-  U --> (Add/Edit/Delete Recipes)
-  U --> (View Popular Recipes)
-  U --> (Comment on Recipes)
+participant "Site Web de Recettes" as S
 
-  A --> (Manage Users)
-  A --> (Moderate Recipes)
-}
-@enduml
+S --> U: View Recipes
+
+
+
+A -> S: Delete/ update/ add/ view Recipe

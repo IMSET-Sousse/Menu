@@ -3,6 +3,8 @@ import axios from 'axios';
 
 function Card() {
   const [menuItems, setMenuItems] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(5); // Default to show 5 items per page
 
   useEffect(() => {
     // Fetch menu items from the API
@@ -18,13 +20,45 @@ function Card() {
     fetchMenuItems();
   }, []);
 
+  // Pagination logic
+  const indexOfLastItem = currentPage * rowsPerPage;
+  const indexOfFirstItem = indexOfLastItem - rowsPerPage;
+  const currentItems = menuItems.slice(indexOfFirstItem, indexOfLastItem);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(menuItems.length / rowsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleRowsPerPageChange = (e) => {
+    setRowsPerPage(Number(e.target.value));
+    setCurrentPage(1); // Reset to the first page
+  };
+
   return (
     <div className="container mt-5">
       {/* Title */}
       <h2 className="text-center mb-4">Our Menu</h2>
-      
+
+      {/* Dropdown to select rows per page */}
+      <div className="mb-3">
+        <label>Rows per page:</label>
+        <select
+          className="form-select"
+          value={rowsPerPage}
+          onChange={handleRowsPerPageChange}
+        >
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+        </select>
+      </div>
+
+      {/* Card Grid */}
       <div className="row">
-        {menuItems.map((item) => (
+        {currentItems.map((item) => (
           <div className="col-md-4 mb-4" key={item.id}>
             <div className="card menu-card">
               {item.image && (
@@ -52,6 +86,22 @@ function Card() {
           </div>
         ))}
       </div>
+
+      {/* Pagination Controls */}
+      <nav aria-label="Page navigation">
+        <ul className="pagination justify-content-center">
+          {pageNumbers.map((number) => (
+            <li key={number} className="page-item">
+              <button
+                className="page-link"
+                onClick={() => paginate(number)}
+              >
+                {number}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       {/* CSS Styles */}
       <style jsx>{`

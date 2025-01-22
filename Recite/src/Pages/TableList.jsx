@@ -20,6 +20,9 @@ function TableList() {
     prepTime: '',
   });
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(5); // Default rows per page (5)
+
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
@@ -89,6 +92,19 @@ function TableList() {
     }
   };
 
+  // Pagination logic
+  const indexOfLastItem = currentPage * rowsPerPage;
+  const indexOfFirstItem = indexOfLastItem - rowsPerPage;
+  const currentItems = menuItems.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // Update rows per page
+  const handleRowsPerPageChange = (e) => {
+    setRowsPerPage(Number(e.target.value));
+    setCurrentPage(1); // Reset to the first page
+  };
+
   if (loading) {
     return (
       <div className="container mt-5 text-center">
@@ -109,15 +125,34 @@ function TableList() {
     );
   }
 
+  // Pagination controls
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(menuItems.length / rowsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   return (
     <div className="container mt-5">
       <h2 className="text-center mb-4">Menu Items</h2>
-      {/* Add a button to navigate to the MenuAddForm page */}
       <Link to="/add">
         <Button variant="success" className="mb-4">
           Add New Menu Item
         </Button>
       </Link>
+
+      {/* Dropdown to select rows per page */}
+      <div className="mb-3">
+        <label>Rows per page:</label>
+        <select
+          className="form-select"
+          value={rowsPerPage}
+          onChange={handleRowsPerPageChange}
+        >
+          <option value={5}>5</option>
+          <option value={10}>10</option>
+          <option value={20}>20</option>
+        </select>
+      </div>
 
       <div className="table-responsive">
         <table className="table table-bordered table-striped">
@@ -133,7 +168,7 @@ function TableList() {
             </tr>
           </thead>
           <tbody>
-            {menuItems.map((item) => (
+            {currentItems.map((item) => (
               <tr key={item.id}>
                 <td>
                   {item.image ? (
@@ -183,6 +218,22 @@ function TableList() {
           </tbody>
         </table>
       </div>
+
+      {/* Pagination */}
+      <nav aria-label="Page navigation">
+        <ul className="pagination justify-content-center">
+          {pageNumbers.map((number) => (
+            <li key={number} className="page-item">
+              <button
+                className="page-link"
+                onClick={() => paginate(number)}
+              >
+                {number}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       {/* Modal for updating menu item */}
       {currentItem && (

@@ -61,6 +61,24 @@ o	Communication via API avec Axios ou Fetch.
 •	Tests d'intégration et unitaires réussis.
 •	Documentation complète.
 
-Diagram de Sequence
+Diagrams:
+
+
+@startuml
+actor User as U
+actor Admin as A
+
+rectangle "Site Web de Recettes" {
+  U --> (View Recipes)
+
+  A --> (Add/Edit/Delete Recipes)
+  A --> (Search Recipes)
+  A --> (View Recipes)
+  
+  
+}
+@enduml
+
+![Use Case Diagram](docs/Diagrams/usecase.png)
 
  

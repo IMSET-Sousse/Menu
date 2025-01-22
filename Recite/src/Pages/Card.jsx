@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function Card() {
   const [menuItems, setMenuItems] = useState([]);
@@ -7,6 +9,13 @@ function Card() {
   const [rowsPerPage, setRowsPerPage] = useState(5); // Default to show 5 items per page
 
   useEffect(() => {
+    // Initialize AOS animations
+    AOS.init({
+      duration: 1000, // Animation duration in milliseconds
+      easing: 'ease-in-out', // Easing function
+      once: true, // Trigger animation only once
+    });
+
     // Fetch menu items from the API
     const fetchMenuItems = async () => {
       try {
@@ -58,8 +67,13 @@ function Card() {
 
       {/* Card Grid */}
       <div className="row">
-        {currentItems.map((item) => (
-          <div className="col-md-4 mb-4" key={item.id}>
+        {currentItems.map((item, index) => (
+          <div
+            className="col-md-4 mb-4"
+            key={item.id}
+            data-aos="fade-up" // Animation type
+            data-aos-delay={index * 100} // Staggered delay
+          >
             <div className="card menu-card">
               {item.image && (
                 <img
@@ -91,10 +105,18 @@ function Card() {
       <nav aria-label="Page navigation">
         <ul className="pagination justify-content-center">
           {pageNumbers.map((number) => (
-            <li key={number} className="page-item">
+            <li
+              key={number}
+              className={`page-item ${currentPage === number ? 'active' : ''}`}
+            >
               <button
                 className="page-link"
                 onClick={() => paginate(number)}
+                style={{
+                  backgroundColor: currentPage === number ? 'green' : 'transparent',
+                  color: currentPage === number ? 'white' : 'black',
+                  borderColor: currentPage === number ? 'green' : '#dee2e6',
+                }}
               >
                 {number}
               </button>
@@ -102,18 +124,6 @@ function Card() {
           ))}
         </ul>
       </nav>
-
-      {/* CSS Styles */}
-      <style jsx>{`
-        .menu-card {
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .menu-card:hover {
-          transform: translateY(-10px); /* Slightly lift the card */
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-        }
-      `}</style>
     </div>
   );
 }

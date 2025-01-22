@@ -1,3 +1,9 @@
 .add{
     background: url('/Recite/public/cover.png');
 }
+.custom-active .page-link {
+    background-color: green !important;
+    color: white !important;
+    border-color: green !important; /* Match border to background */
+  }
+  

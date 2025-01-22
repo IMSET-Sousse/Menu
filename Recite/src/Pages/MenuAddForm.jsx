@@ -101,6 +101,7 @@ function MenuAddForm() {
             min="0"
             step="0.01"
             loading={loading}
+            
           />
         </div>
 
@@ -146,7 +147,7 @@ function MenuAddForm() {
         />
 
         <div className="d-grid">
-          <button type="submit" className="btn btn-primary" disabled={loading}>
+          <button style={{backgroundColor:'green'}} type="submit" className="btn btn-primary" disabled={loading}>
             Add Menu Item
           </button>
         </div>
@@ -154,7 +155,7 @@ function MenuAddForm() {
 
       {/* Navigation Button */}
       <div className="d-grid mt-3">
-        <button className="btn btn-secondary" onClick={handleNavigate}>
+        <button style={{backgroundColor:'green'}} className="btn btn-secondary" onClick={handleNavigate}>
           Go to TableMenu
         </button>
       </div>

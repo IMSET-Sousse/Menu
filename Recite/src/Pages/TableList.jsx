@@ -293,20 +293,28 @@ function TableList() {
                 <td>{item.prepTime} min</td>
                 <td>
                   <div className="d-flex gap-2">
-                    <Button
-                      variant="warning"
-                      size="sm"
-                      onClick={() => handleUpdate(item.id)}
-                    >
-                      Update
-                    </Button>
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      onClick={() => handleDelete(item.id)}
-                    >
-                      Delete
-                    </Button>
+                  <Button
+  size="sm"
+  onClick={() => handleUpdate(item.id)}
+  style={{
+    backgroundColor: 'green',
+    color: 'white', // Text color for better contrast
+    border: 'none', // Optional: Remove border if needed
+  }}
+>
+  Update
+</Button>
+<Button
+  size="sm"
+  onClick={() => handleDelete(item.id)}
+  style={{
+    backgroundColor: 'red',
+    color: 'white', // Text color for better contrast
+    border: 'none', // Optional: Remove border if needed
+  }}
+>
+  Delete
+</Button>
                   </div>
                 </td>
               </tr>
@@ -317,22 +325,23 @@ function TableList() {
 
       {/* Pagination */}
       <nav aria-label="Page navigation">
-        <ul className="pagination justify-content-center">
-          {pageNumbers.map((number) => (
-            <li 
-              key={number} 
-              className={`page-item ${currentPage === number ? 'active' : ''}`}
-            >
-              <button
-                className="page-link"
-                onClick={() => paginate(number)}
-              >
-                {number}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </nav>
+  <ul className="pagination justify-content-center">
+    {pageNumbers.map((number) => (
+      <li 
+        key={number} 
+        className={`page-item ${currentPage === number ? 'active custom-active' : ''}`}
+      >
+        <button
+          className="page-link"
+          onClick={() => paginate(number)}
+        >
+          {number}
+        </button>
+      </li>
+    ))}
+  </ul>
+</nav>
+
 
       {/* Update Modal */}
       {currentItem && (

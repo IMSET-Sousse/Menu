@@ -1,0 +1,15 @@
+
+@startuml
+actor User as U
+actor Admin as A
+
+rectangle "Site Web de Recettes" {
+  U --> (Search Recipes)
+  U --> (Add/Edit/Delete Recipes)
+  U --> (View Popular Recipes)
+  U --> (Comment on Recipes)
+
+  A --> (Manage Users)
+  A --> (Moderate Recipes)
+}
+@enduml

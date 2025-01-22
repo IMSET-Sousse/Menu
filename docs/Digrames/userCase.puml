@@ -1,11 +1,12 @@
 @startuml
-actor User as U
-actor Admin as A
+actor Admin
 
-participant "Site Web de Recettes" as S
+rectangle "Menu Management System" {
+  Admin --> (View Items in CardView)
+  Admin --> (Add New Item)
+  Admin --> (Update Item)
+  Admin --> (Delete Item)
+  Admin --> (Manage Menu Items)
+}
 
-S --> U: View Recipes
-
-
-
-A -> S: Delete/ update/ add/ view Recipe
+@enduml

@@ -1,17 +1,23 @@
 @startuml
 
 actor Admin
+participant "CardView" as CardView
 participant "MenuItem" as MenuItem
 participant "MenuTable" as MenuTable
 participant "Database" as Database
-participant "CardView" as CardView
 
-Admin -> MenuItem: Enter menu item details
-MenuItem -> MenuTable: Add new item
+Admin -> CardView: View items in card format
+CardView -> MenuItem: Add new item
+MenuItem -> MenuTable: Enter menu item details
 MenuTable -> Database: Insert new item into DB
 Database -> Database: Save item in DB
 Database -> MenuTable: Return success response
-MenuTable -> CardView: Update UI with new item
-CardView -> Admin: Show item in card format
+MenuTable -> CardView: Update items
+
+Admin -> MenuTable: CRUD operations on menu items
+MenuTable -> Database: Save changes to DB
+Database -> MenuTable: Return success response
+MenuTable -> CardView: Reflect updated items
+CardView -> Admin: Display updated items
 
 @enduml

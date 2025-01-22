@@ -73,7 +73,7 @@ Seq Diagram::
 ![Seq Diagram](/docs/Digrames/seq.png)
 
 
-Dtate Diagram::
+State Diagram::
 
 ![State Diagram](Digrames/state.png)
 

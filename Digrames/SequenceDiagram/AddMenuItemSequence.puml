@@ -1,0 +1,17 @@
+@startuml
+
+actor Admin
+participant "MenuItem" as MenuItem
+participant "MenuTable" as MenuTable
+participant "Database" as Database
+participant "CardView" as CardView
+
+Admin -> MenuItem: Enter menu item details
+MenuItem -> MenuTable: Add new item
+MenuTable -> Database: Insert new item into DB
+Database -> Database: Save item in DB
+Database -> MenuTable: Return success response
+MenuTable -> CardView: Update UI with new item
+CardView -> Admin: Show item in card format
+
+@enduml

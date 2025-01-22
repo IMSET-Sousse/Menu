@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import FormInput from '../Comoenents/MenuForm/FormInput';
 import ImageUpload from '../Comoenents/MenuForm/ImageUpload';
 import FormSelect from '../Comoenents/MenuForm/FormSelect';
-
+import './add.css'
 function MenuAddForm() {
   const [formData, setFormData] = useState({
     name: '',

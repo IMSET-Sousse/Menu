@@ -5,8 +5,8 @@ import './App.css'
 import MenuAddForm from './Pages/MenuAddForm'
 import { Toaster } from 'react-hot-toast'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import TableList from './Pages/TableList'
 import Card from './Pages/Card'
+import TableList from './Pages/TableList'
 function App() {
   const [count, setCount] = useState(0)
 

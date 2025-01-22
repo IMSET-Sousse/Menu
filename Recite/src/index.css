@@ -5,3 +5,7 @@
 @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css');
 
 /* Your custom styles can go below */
+body {
+    background: url('/cover.png') no-repeat center center fixed;
+    background-size: cover;
+}

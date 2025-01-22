@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
-
+import  './add.css'
 function TableList() {
   const [menuItems, setMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -157,7 +157,7 @@ function TableList() {
   }
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 add">
       <h2 className="text-center mb-4">Menu Items</h2>
       <Link to="/add">
         <Button variant="success" className="mb-4">
@@ -202,7 +202,7 @@ function TableList() {
 
             <div className="col-md-4">
               <Form.Group className="mb-3">
-                <Form.Label>Price Range ($)</Form.Label>
+                <Form.Label>Price Range (TND)</Form.Label>
                 <div className="d-flex gap-2">
                   <Form.Control
                     type="number"
@@ -289,7 +289,7 @@ function TableList() {
                 <td>{item.name}</td>
                 <td>{item.description}</td>
                 <td className="text-capitalize">{item.category}</td>
-                <td>${Number(item.price).toFixed(2)}</td>
+                <td>TND{Number(item.price).toFixed(2)}</td>
                 <td>{item.prepTime} min</td>
                 <td>
                   <div className="d-flex gap-2">
@@ -383,7 +383,7 @@ function TableList() {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="price">
-                <Form.Label>Price ($)</Form.Label>
+                <Form.Label>Price (TND)</Form.Label>
                 <Form.Control
                   type="number"
                   name="price"

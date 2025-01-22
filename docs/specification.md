@@ -79,6 +79,6 @@ rectangle "Site Web de Recettes" {
 }
 @enduml
 
-![Use Case Diagram](docs/Diagrames/usercase.png)
+![Use Case Diagram](Diagrames/usercase.png)
 
  
